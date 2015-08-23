@@ -1,4 +1,4 @@
-1. Get the data and unzip it.
+Get the data and unzip it.
 
 ```{r}
 > setInternet2(TRUE)
@@ -7,7 +7,7 @@
 > unzip(zipfile="./data/Project.zip",exdir="./data")
 ```
 
-2. Read all the necessary data into R.
+Read all the necessary data into R.
 
 ```{r}
 > dtActTest <- read.table("./data/UCI HAR Dataset/test/Y_test.txt",header=FALSE)
@@ -18,7 +18,7 @@
 > dtFeaTrain <- read.table("./data/UCI HAR Dataset/train/X_train.txt",header=FALSE)
 ```
 
-3. Merge the training and the test sets to create one data set called "dt".
+Merge the training and the test sets to create one data set called "dt".
 
 ```{r}
 > dtAct <- rbind(dtActTrain,dtActTest)
@@ -33,7 +33,7 @@
 > head(dt)
 ```
 
-4. Extract only the measurements on the mean and standard deviation for each measurement. 
+Extract only the measurements on the mean and standard deviation for each measurement. 
 
 ```{r}
 > subdtFeaNames <- dtFeaNames$V2[grep("mean\\(\\)|std\\(\\)", dtFeaNames$V2)]
@@ -41,7 +41,7 @@
 > dt <- subset(dt,select=Names)
 ```
 
-5. Use descriptive activity names to name the activities in the data set.
+Use descriptive activity names to name the activities in the data set.
 
 ```{r}
 > ActLabels <- read.table("./data/UCI HAR Dataset/activity_labels.txt")
@@ -56,7 +56,7 @@
 >head(dt)
 ```
 
-6. Label the data set with descriptive variable names. 
+Label the data set with descriptive variable names. 
  
 ```{r}
 > names(dt) <- gsub("^t", "time", names(dt))
@@ -68,7 +68,7 @@
 > names(dt)
 ```
 
-7. Create a second, independent tidy data set.
+Create a second, independent tidy data set.
 
 ```{r}
 > dt2<-aggregate(. ~Subject + Activity, dt, mean)
