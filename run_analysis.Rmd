@@ -1,0 +1,8 @@
+Get the data and unzip it.
+
+```{r}
+> setInternet2(TRUE)
+> url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+> download.file(url,"./data/Project.zip")
+> unzip(zipfile="./data/Project.zip",exdir="./data")
+```
